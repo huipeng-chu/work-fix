@@ -1,55 +1,53 @@
 <template>
-  <div id='app'>
-    <Sidebar :menuList='menuList'/>
+  <div id="nav">
+    <el-container>
+      <el-aside width="200px">
+        <Sidebar :menuList='menuList'></Sidebar>
+      </el-aside>
+      <el-container>
+        <el-header>Header</el-header>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
   </div>
-  </template>
+</template>
 
 <script>
 import Sidebar from './components/SideBar'
 export default {
-  name: 'menu',
+  name: 'comMenu',
   components: { Sidebar },
   data () {
     return {
-      menuList: [
+      menuList: []
+    }
+  },
+  created () {
+    this.getMenuList()
+  },
+  methods: {
+    getMenuList () {
+      this.$axios.post('/api/api-m/backstageMenu/selectMenuByUserIdSiteId',
         {
-          path: '/func1',
-          title: '功能1',
-          children: []
-        },
-        {
-          path: '/func2',
-          title: '功能2',
-          children: []
-        },
-        {
-          path: '/func3',
-          title: '功能3',
-          children: [
-            {
-              path: '/func31',
-              title: '功能3-1',
-              children: [
-                {
-                  path: '/func31',
-                  title: '功能3-1'
-                }
-              ]
-            },
-            {
-              path: '/func32',
-              title: '功能3-2',
-              children: []
-            },
-            {
-              path: '/func33',
-              title: '功能3-3',
-              children: []
-            }
-          ]
+          siteId: this.$store.state.siteId,
+          userId: Number(window.sessionStorage.getItem('userId'))
         }
-      ]
+      ).then(res => {
+        this.menuList = res.data
+      })
     }
   }
 }
 </script>
+<style lang="less" scope>
+#nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 16px;
+}
+.ivu-layout-sider {
+  width: 250px !important;
+}
+</style>

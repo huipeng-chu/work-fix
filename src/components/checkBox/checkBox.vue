@@ -1,19 +1,18 @@
 <template>
-    <div>
-      <template>
-        <div class="tip">
-          1.初始接收'1,2,4' 让第1/3/4个多选框处于选中状态
-          2.多选框的被选中的值[1,2,4]
-        </div>
-        <el-checkbox-group v-model="checkList" @change="listChange()">
-          <el-checkbox :label="item.value" v-for="(item) in types"
-                       :key="item.id">
-            {{item.label}}
-            <el-button type="text">配置</el-button>
-          </el-checkbox>
-        </el-checkbox-group>
-      </template>
-    </div>
+  <div>
+    <template>
+      <div class="tip">
+        1.初始接收'1,2,4' 让第1/2/4个多选框处于选中状态
+        2.多选框的被选中的值[1,2,4]
+      </div>
+      <el-checkbox-group v-model="checkList" @change="listChange()">
+        <el-checkbox :label="item.value" v-for="(item) in types" :key="item.id">
+          {{item.label}}
+          <el-button type="text">配置</el-button>
+        </el-checkbox>
+      </el-checkbox-group>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -61,7 +60,7 @@ export default {
 </script>
 
 <style scoped>
-  .el-checkbox {
-    display: block;
-  }
+.el-checkbox {
+  display: block;
+}
 </style>

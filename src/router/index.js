@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Checkbox from '../components/checkBox/checkBox'
 import Menu from '../components/menu/menu'
+import Tree from '../components/tree/tree'
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
     path: '/home/menu',
     name: Menu,
     component: Menu
+  },
+  {
+    path: '/home/tree',
+    name: Tree,
+    component: Tree
   }
 ]
 
